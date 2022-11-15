@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Le informazioni generali relative a un assembly sono controllate dal seguente 
 // set di attributi. Modificare i valori di questi attributi per modificare le informazioni
 // associate a un assembly.
-[assembly: AssemblyTitle("DaamDBManager")]
+[assembly: AssemblyTitle("DaamApisCollection")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DaamDBManager")]
+[assembly: AssemblyProduct("DaamApisCollection")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Se il progetto viene esposto a COM, il GUID seguente verrà utilizzato come ID della libreria dei tipi
-[assembly: Guid("fbc081a5-6cb3-4c99-9d04-8683e499356a")]
+[assembly: Guid("83164fed-10a7-49ae-8f25-d0c7711f5a66")]
 
 // Le informazioni sulla versione di un assembly sono costituite dai seguenti quattro valori:
 //
