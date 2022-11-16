@@ -5,7 +5,7 @@ namespace DaamApiCollection
     namespace DaamDBManager
     {
         /// <summary>
-        /// Classe per i comandi Sql di tipo DQL
+        /// Classe per la costruzione di istruzioni SQL di tipo DQL
         /// </summary>
         public class DQL
         {
@@ -19,10 +19,10 @@ namespace DaamApiCollection
             /// <returns>Ritorna l'oggetto DQL</returns>
             public DQL Select(string field = "*", bool distinct = false)
             {
-                DQL.query = "";
+                query = "";
 
-                if (distinct) DQL.query += "SELECT DISTINCT" + field + " ";
-                else DQL.query += "SELECT " + field + " ";
+                if (distinct) query += "SELECT DISTINCT" + field + " ";
+                else query += "SELECT " + field + " ";
                 return this;
             }
 
@@ -33,13 +33,13 @@ namespace DaamApiCollection
             /// <returns>Ritorna l'oggetto DQL</returns>
             public DQL From(string table)
             {
-                if (!(DQL.query.Contains("SELECT")))
+                if (!(query.Contains("SELECT")))
                 {
-                    DQL.query = "";
+                    query = "";
                     //Genera l'eccezione da gestire tramite Try Catch
-                    throw new Exception("Manca comando SELECT");
+                    throw new ArgumentException("Manca comando SELECT");
                 }
-                DQL.query += "FROM " + table + " ";
+                query += "FROM " + table + " ";
                 return this;
 
             }
@@ -51,29 +51,13 @@ namespace DaamApiCollection
             /// <returns>Ritorna l'oggetto DQL</returns>
             public DQL InnerJoin(string table)
             {
-                if (!(DQL.query.Contains("FROM")))
+                if (!(query.Contains("FROM")))
                 {
-                    DQL.query = "";
+                    query = "";
                     //Genera l'eccezione da gestire tramite Try Catch
-                    throw new Exception("Manca comando FROM");
-                }
-                DQL.query += "INNER JOIN " + table + " ";
-                return this;
-            }
-
-            /// <summary>
-            /// Clausula di vincolo integrità referenziale
-            /// </summary>
-            /// <param name="field">Campo su cui verificare la clausula</param>
-            /// <returns>Ritorna oggetto DQL con DQL.query creata(parziale)</returns>
-            public DQL Where(string field)
-            {
-                if (!(DQL.query.Contains("FROM")))
-                {
-                    DQL.query = "";
                     throw new ArgumentException("Manca comando FROM");
                 }
-                DQL.query += "WHERE " + field + " ";
+                query += "INNER JOIN " + table + " ";
                 return this;
             }
 
@@ -81,15 +65,31 @@ namespace DaamApiCollection
             /// Clausula di vincolo integrità referenziale
             /// </summary>
             /// <param name="field">Campo su cui verificare la clausula</param>
-            /// <returns>Ritorna oggetto DQL con DQL.query creata(parziale)</returns>
+            /// <returns>Ritorna oggetto DQL con query creata(parziale)</returns>
+            public DQL Where(string field)
+            {
+                if (!(query.Contains("FROM")))
+                {
+                    query = "";
+                    throw new ArgumentException("Manca comando FROM");
+                }
+                query += "WHERE " + field + " ";
+                return this;
+            }
+
+            /// <summary>
+            /// Clausula di vincolo integrità referenziale
+            /// </summary>
+            /// <param name="field">Campo su cui verificare la clausula</param>
+            /// <returns>Ritorna oggetto DQL con query creata(parziale)</returns>
             public DQL ON(string field)
             {
-                if (!(DQL.query.Contains("INNER JOIN")))
+                if (!(query.Contains("INNER JOIN")))
                 {
-                    DQL.query = "";
+                    query = "";
                     throw new ArgumentException("Manca comando INNER JOIN");
                 }
-                DQL.query += "ON " + field + " ";
+                query += "ON " + field + " ";
                 return this;
             }
 
@@ -97,15 +97,15 @@ namespace DaamApiCollection
             /// Operatore di uguaglianza =
             /// </summary>
             /// <param name="value">Valore da confrontare</param>
-            /// <returns>Ritorna oggetto DQL con DQL.query creata(parziale)</returns>
+            /// <returns>Ritorna oggetto DQL con query creata(parziale)</returns>
             public DQL Equals(int value)
             {
-                if (!(DQL.query.Contains("WHERE")))
+                if (!(query.Contains("WHERE")))
                 {
-                    DQL.query = "";
+                    query = "";
                     throw new ArgumentException("Manca comando WHERE");
                 }
-                DQL.query += "= " + value + " ";
+                query += "= " + value + " ";
                 return this;
             }
 
@@ -113,15 +113,15 @@ namespace DaamApiCollection
             /// Operatore di uguaglianza =
             /// </summary>
             /// <param name="value">Valore da confrontare</param>
-            /// <returns>Ritorna oggetto DQL con DQL.query creata(parziale)</returns>
+            /// <returns>Ritorna oggetto DQL con query creata(parziale)</returns>
             public DQL Equals(double value)
             {
-                if (!(DQL.query.Contains("WHERE")))
+                if (!(query.Contains("WHERE")))
                 {
-                    DQL.query = "";
+                    query = "";
                     throw new ArgumentException("Manca comando WHERE");
                 }
-                DQL.query += "= " + value + " ";
+                query += "= " + value + " ";
                 return this;
             }
 
@@ -129,15 +129,15 @@ namespace DaamApiCollection
             /// Operatore di uguaglianza su stringa
             /// </summary>
             /// <param name="value">Valore da confrontare</param>
-            /// <returns>Ritorna oggetto DQL con DQL.query creata(parziale)</returns>
+            /// <returns>Ritorna oggetto DQL con query creata(parziale)</returns>
             public DQL Equals(string value)
             {
-                if (!(DQL.query.Contains("WHERE")))
+                if (!(query.Contains("WHERE")))
                 {
-                    DQL.query = "";
+                    query = "";
                     throw new ArgumentException("Manca comando WHERE");
                 }
-                DQL.query += "= " + value + " ";
+                query += "= " + value + " ";
                 return this;
             }
 
@@ -145,15 +145,15 @@ namespace DaamApiCollection
             /// Metodo Like confronto completo
             /// </summary>
             /// <param name="value">Valore da confrontare</param>
-            /// <returns>Ritorna oggetto DQL con DQL.query creata(parziale)</returns>
+            /// <returns>Ritorna oggetto DQL con query creata(parziale)</returns>
             public DQL Like(string value)
             {
-                if (!(DQL.query.Contains("WHERE")))
+                if (!(query.Contains("WHERE")))
                 {
-                    DQL.query = "";
+                    query = "";
                     throw new ArgumentException("Manca comando WHERE");
                 }
-                DQL.query += "LIKE(%" + value + "%)";
+                query += "LIKE(%" + value + "%)";
                 return this;
             }
 
@@ -161,33 +161,33 @@ namespace DaamApiCollection
             /// Operatore AND
             /// </summary>
             /// <param name="field">Campo successivo all'AND per il confronto</param>
-            /// <returns>Ritorna oggetto DQL con DQL.query creata(parziale)</returns>
+            /// <returns>Ritorna oggetto DQL con query creata(parziale)</returns>
             public DQL And(string field)
             {
-                if (!(DQL.query.Contains("WHERE")) || !(DQL.query.Contains("ON")))
+                if (!(query.Contains("WHERE")) || !(query.Contains("ON")))
                 {
-                    DQL.query = "";
+                    query = "";
                     throw new ArgumentException("Manca comando WHERE oppure comando ON");
                 }
-                DQL.query += "AND " + field + " ";
+                query += "AND " + field + " ";
                 return this;
             }
 
             /// <summary>
             /// Inserisce il ; finale
             /// </summary>
-            /// <returns>Ritorna oggetto DQL con DQL.query creata(parziale)</returns>
+            /// <returns>Ritorna oggetto DQL con query creata(parziale)</returns>
             public DQL endLine()
             {
-                DQL.query += ";";
+                query += ";";
                 return this;
             }
 
             /// <summary>
-            /// Getter DQL.query creata
+            /// Getter query creata
             /// </summary>
-            /// <returns>Restituisce la DQL.query creata</returns>
-            public string getQuery() { return DQL.query; }
+            /// <returns>Restituisce la query creata</returns>
+            public string getQuery() { return query; }
 
         }
     }

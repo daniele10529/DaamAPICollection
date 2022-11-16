@@ -46,7 +46,9 @@
   <ItemGroup>
     <Compile Include="DaamChecking\Checking.cs" />
     <Compile Include="DaamDBManager\Connecting.cs" />
+    <Compile Include="DaamDBManager\DML.cs" />
     <Compile Include="DaamDBManager\DQL.cs" />
+    <Compile Include="DaamDBManager\IGeneralModelData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DaamXMLParser\ReadingXML.cs" />
     <Compile Include="DaamChecking\RefactoringValue.cs" />
