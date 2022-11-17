@@ -17,7 +17,7 @@ namespace DaamApiCollection
             /// <summary>
             /// Costruttore dell'oggetto Connecting
             /// </summary>
-            /// <param name="strConnection"></param>
+            /// <param name="strConnection">Stringa per la connessione al DB</param>
             public Connecting(string strConnection)
             {
                 this.strConnection = strConnection;

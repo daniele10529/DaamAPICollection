@@ -9,6 +9,7 @@ namespace DaamApiCollection
         /// </summary>
         public class DQL
         {
+            //Attributo privato
             private static string query;
 
             /// <summary>

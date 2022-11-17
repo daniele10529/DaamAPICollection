@@ -16,7 +16,7 @@ namespace DaamApiCollection
             /// <summary>
             /// Costruttore dell'oggetto WriterXML
             /// </summary>
-            /// <param name="pathFile"></param>
+            /// <param name="pathFile">Percorso del File XML da leggere</param>
             public WriterXML(string pathFile)
             {
                 this.pathFile = pathFile;

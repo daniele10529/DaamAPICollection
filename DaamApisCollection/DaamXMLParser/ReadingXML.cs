@@ -17,7 +17,7 @@ namespace DaamApiCollection
             /// <summary>
             /// Costruttore dell'oggetto ReadingXML
             /// </summary>
-            /// <param name="pathFile">Percorso del file da leggere</param>
+            /// <param name="pathFile">Percorso del file XML da leggere</param>
             public ReadingXML(string pathFile)
             {
                 this.pathFile = pathFile;
