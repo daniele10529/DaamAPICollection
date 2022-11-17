@@ -43,6 +43,7 @@ namespace DaamApiCollection
                     node.InnerText = insertValue;
                     //Salva il file XML modificato
                     doc.Save(pathFile);
+                    //Ritorna true se salvataggio corretto
                     return true;
 
                 }catch(Exception ex)
