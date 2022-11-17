@@ -52,7 +52,7 @@ namespace DaamApiCollection
             /// <param name="connection">Connessione aperta</param>
             /// <param name="query">Query da associare al Command</param>
             /// <returns>Ritorna un Command da eseguire</returns>
-            public MySqlCommand command(MySqlConnection connection, string query)
+            public MySqlCommand getCommand(MySqlConnection connection, string query)
             {
                 //Crea un oggetto command e lo restituisce
                 MySqlCommand command;
@@ -74,7 +74,7 @@ namespace DaamApiCollection
             /// </summary>
             /// <param name="command">Command con query associata</param>
             /// <returns>Restituisce un Reader per la lettura dati da DB</returns>
-            public MySqlDataReader reader(MySqlCommand command)
+            public MySqlDataReader getReader(MySqlCommand command)
             {
                 MySqlDataReader read;
                 try
@@ -96,7 +96,7 @@ namespace DaamApiCollection
             /// </summary>
             /// <param name="command">Command con query associata</param>
             /// <returns>Restituisce un Reader per la lettura dati da DB</returns>
-            public MySqlDataReader reader(MySqlCommand command, string query)
+            public MySqlDataReader getReader(MySqlCommand command, string query)
             {
                 MySqlDataReader read;
                 try

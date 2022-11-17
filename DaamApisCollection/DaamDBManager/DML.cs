@@ -7,10 +7,10 @@ namespace DaamApiCollection
         /// <summary>
         /// Classe per la costruzione di istruzioni SQL di tipo DML
         /// </summary>
-        class DML : DQL
+        public class DML
         {
             //Attributi privati
-            private static string query;
+            private static string cudOperation;
             private int nColumns;
 
             /// <summary>
@@ -22,11 +22,11 @@ namespace DaamApiCollection
             /// Metodo per la creazione del comando Insert Into
             /// </summary>
             /// <param name="table">Tabella dove inserire il record</param>
-            /// <returns>Ritorna oggetto DML con query creata(parziale)</returns>
+            /// <returns>Ritorna oggetto DML con cudOperation creata(parziale)</returns>
             public DML InsertInto(string table)
             {
-                query = "";
-                query += "INSERT INTO " + table + " ";
+                cudOperation = "";
+                cudOperation += "INSERT INTO " + table + " ";
                 return this;
             }
 
@@ -34,14 +34,14 @@ namespace DaamApiCollection
             /// Metodo per definire i campi da inserire dopo il metodo InsertInto
             /// </summary>
             /// <param name="fields">Array string con i nomi dei campi</param>
-            /// <returns>Ritorna oggetto DML con query creata(parziale)</returns>
+            /// <returns>Ritorna oggetto DML con cudOperation creata(parziale)</returns>
             public DML Fields(params string[] fields)
             {
                 string parameters = "";
 
-                if (!(query.Contains("INSERT INTO")))
+                if (!(cudOperation.Contains("INSERT INTO")))
                 {
-                    query = "";
+                    cudOperation = "";
                     //Genera l'eccezione da gestire tramite Try Catch
                     throw new ArgumentException("Manca comando INSERT INTO");
                 }
@@ -55,27 +55,27 @@ namespace DaamApiCollection
                         nColumns++;
                     }
                     //Rimuove l'ultima virgola
-                    parameters.Remove(parameters.Length - 1);
+                    parameters = parameters.Remove(parameters.Length - 1);
                 }
 
-                query += "(" + parameters + ")" + " ";
+                cudOperation += "(" + parameters + ")" + " ";
                 return this;
             }
 
             /// <summary>
-            /// Metodo per passare i valori dei campi alla query di Insert Into
+            /// Metodo per passare i valori dei campi alla cudOperation di Insert Into
             /// </summary>
             /// <param name="values">Array string con i valori da inserire</param>
-            /// <returns>Ritorna oggetto DML con query creata(parziale)</returns>
+            /// <returns>Ritorna oggetto DML con cudOperation creata(parziale)</returns>
             public DML Values(params string[] values)
             {
                 string parameters = "";
 
                 //Verifica che il numero di valori passati corrisponda al numero di campi
-                //della query creata
+                //della cudOperation creata
                 if (values.Length != nColumns)
                 {
-                    query = "";
+                    cudOperation = "";
                     //Genera l'eccezione da gestire tramite Try Catch
                     throw new ArgumentException("I valori passati al metodo non corrispondo al numero di campi creati");
                 }
@@ -87,9 +87,10 @@ namespace DaamApiCollection
                         parameters += value + ",";
                     }
                     //Rimuove l'ultima virgola
-                    parameters.Remove(parameters.Length - 1);
+                    parameters = parameters.Remove(parameters.Length - 1);
                 }
 
+                cudOperation += "VALUES(" + parameters + ")";
                 return this;
 
             }
@@ -98,11 +99,11 @@ namespace DaamApiCollection
             /// Metodo per l'update
             /// </summary>
             /// <param name="table">Tabella su cui effettuare l'update</param>
-            /// <returns>Ritorna oggetto DML con query creata(parziale)</returns>
+            /// <returns>Ritorna oggetto DML con cudOperation creata(parziale)</returns>
             public DML Update(string table)
             {
-                query = "";
-                query += "UPDATE " + table;
+                cudOperation = "";
+                cudOperation += "UPDATE " + table + " ";
                 return this;
             }
 
@@ -110,14 +111,14 @@ namespace DaamApiCollection
             /// Metodo per definire i campi del comando Set con il valore assegnato al campo
             /// </summary>
             /// <param name="fieldsEqualsValues">Campo con valore assegnato separato da lsimbolo '='</param>
-            /// <returns>Ritorna oggetto DML con query creata(parziale)</returns>
+            /// <returns>Ritorna oggetto DML con cudOperation creata(parziale)</returns>
             public DML Set(params string[] fieldsEqualsValues)
             {
                 string parameters = "";
 
-                if (!(query.Contains("UPDATE")))
+                if (!(cudOperation.Contains("UPDATE")))
                 {
-                    query = "";
+                    cudOperation = "";
                     //Genera l'eccezione da gestire tramite Try Catch
                     throw new ArgumentException("Manca comando UPDATE");
                 }
@@ -131,10 +132,10 @@ namespace DaamApiCollection
                         nColumns++;
                     }
                     //Rimuove l'ultima virgola
-                    parameters.Remove(parameters.Length - 1);
+                    parameters = parameters.Remove(parameters.Length - 1);
                 }
 
-                query += "SET " + parameters + " ";
+                cudOperation += "SET " + parameters + " ";
                 return this;
             }
 
@@ -142,13 +143,126 @@ namespace DaamApiCollection
             /// Metodo per il Delete
             /// </summary>
             /// <param name="table">Tabella su cui effettuare il delete</param>
-            /// <returns>Ritorna oggetto DML con query creata(parziale)</returns>
+            /// <returns>Ritorna oggetto DML con cudOperation creata(parziale)</returns>
             public DML DeleteFrom(string table)
             {
-                query = "";
-                query += "DELETE FORM " + table;
+                cudOperation = "";
+                cudOperation += "DELETE FROM " + table;
                 return this;
             }
+
+            /// <summary>
+            /// Clausula di vincolo integrità referenziale
+            /// </summary>
+            /// <param name="field">Campo su cui verificare la clausula</param>
+            /// <returns>Ritorna oggetto DML con cudOperation creata(parziale)</returns>
+            public DML Where(string field)
+            {
+                /*if (!(cudOperation.Contains("SET")) || !(cudOperation.Contains("DELETE FROM")))
+                {
+                    cudOperation = "";
+                    throw new ArgumentException("Manca comando FROM");
+                }*/
+                cudOperation += "WHERE " + field + " ";
+                return this;
+            }
+
+            /// <summary>
+            /// Operatore di uguaglianza =
+            /// </summary>
+            /// <param name="value">Valore da confrontare</param>
+            /// <returns>Ritorna oggetto DML con cudOperation creata(parziale)</returns>
+            public DML Equals(int value)
+            {
+                if (!(cudOperation.Contains("WHERE")))
+                {
+                    cudOperation = "";
+                    throw new ArgumentException("Manca comando WHERE");
+                }
+                cudOperation += "= " + value + " ";
+                return this;
+            }
+
+            /// <summary>
+            /// Operatore di uguaglianza =
+            /// </summary>
+            /// <param name="value">Valore da confrontare</param>
+            /// <returns>Ritorna oggetto DML con cudOperation creata(parziale)</returns>
+            public DML Equals(double value)
+            {
+                if (!(cudOperation.Contains("WHERE")))
+                {
+                    cudOperation = "";
+                    throw new ArgumentException("Manca comando WHERE");
+                }
+                cudOperation += "= " + value + " ";
+                return this;
+            }
+
+            /// <summary>
+            /// Operatore di uguaglianza su stringa
+            /// </summary>
+            /// <param name="value">Valore da confrontare</param>
+            /// <returns>Ritorna oggetto DML con cudOperation creata(parziale)</returns>
+            public DML Equals(string value)
+            {
+                if (!(cudOperation.Contains("WHERE")))
+                {
+                    cudOperation = "";
+                    throw new ArgumentException("Manca comando WHERE");
+                }
+                cudOperation += "= " + value + " ";
+                return this;
+            }
+
+            /// <summary>
+            /// Metodo Like confronto completo
+            /// </summary>
+            /// <param name="value">Valore da confrontare</param>
+            /// <returns>Ritorna oggetto DML con cudOperation creata(parziale)</returns>
+            public DML Like(string value)
+            {
+                if (!(cudOperation.Contains("WHERE")))
+                {
+                    cudOperation = "";
+                    throw new ArgumentException("Manca comando WHERE");
+                }
+                cudOperation += "LIKE(%" + value + "%)";
+                return this;
+            }
+
+            /// <summary>
+            /// Operatore AND
+            /// </summary>
+            /// <param name="field">Campo successivo all'AND per il confronto</param>
+            /// <returns>Ritorna oggetto DML con cudOperation creata(parziale)</returns>
+            public DML And(string field)
+            {
+                if (!(cudOperation.Contains("WHERE")))
+                {
+                    cudOperation = "";
+                    throw new ArgumentException("Manca comando WHERE oppure comando ON");
+                }
+                cudOperation += "AND " + field + " ";
+                return this;
+            }
+
+            /// <summary>
+            /// Inserisce il ; finale
+            /// </summary>
+            /// <returns>Ritorna oggetto DML con cudOperation creata(parziale)</returns>
+            public DML endLine()
+            {
+                cudOperation += ";";
+                return this;
+            }
+
+            /// <summary>
+            /// Getter con l'operazione di create, update, delete creata
+            /// </summary>
+            /// <returns>Ritorna la stringa SQL creata</returns>
+            public string getCudOperation() { return cudOperation; }
+       
 
         }
     }

@@ -186,7 +186,7 @@ namespace DaamApiCollection
             /// <summary>
             /// Getter query creata
             /// </summary>
-            /// <returns>Restituisce la query creata</returns>
+            /// <returns>Ritorna la stringa query SQL creata</returns>
             public string getQuery() { return query; }
 
         }
