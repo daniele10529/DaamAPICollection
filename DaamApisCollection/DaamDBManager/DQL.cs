@@ -16,7 +16,7 @@ namespace DaamApiCollection
             /// </summary>
             /// <param name="field">Campo per il Select</param>
             /// <param name="distinct">Funzione Distinct opzionale</param>
-            /// <returns>Ritorna l'oggetto DQL</returns>
+            /// <returns>Ritorna oggetto DQL con query creata(parziale)</returns>
             public DQL Select(string field = "*", bool distinct = false)
             {
                 query = "";
@@ -30,7 +30,7 @@ namespace DaamApiCollection
             /// Metodo per la creazione del comando From
             /// </summary>
             /// <param name="table">Tabella su cui fare il mapping</param>
-            /// <returns>Ritorna l'oggetto DQL</returns>
+            /// <returns>Ritorna oggetto DQL con query creata(parziale)</returns>
             public DQL From(string table)
             {
                 if (!(query.Contains("SELECT")))
@@ -48,7 +48,7 @@ namespace DaamApiCollection
             /// Metodo per la creazione dell'Inner Join
             /// </summary>
             /// <param name="table">Tabella con cui fare l'InnerJoin</param>
-            /// <returns>Ritorna l'oggetto DQL</returns>
+            /// <returns>Ritorna oggetto DQL con query creata(parziale)</returns>
             public DQL InnerJoin(string table)
             {
                 if (!(query.Contains("FROM")))

@@ -73,7 +73,7 @@ namespace DaamApiCollection
             /// Metodo per la creazione di un Reader
             /// </summary>
             /// <param name="command">Command con query associata</param>
-            /// <returns>Restituisce un reader per la lettura dati da DB</returns>
+            /// <returns>Restituisce un Reader per la lettura dati da DB</returns>
             public MySqlDataReader reader(MySqlCommand command)
             {
                 MySqlDataReader read;
@@ -95,7 +95,7 @@ namespace DaamApiCollection
             /// Metodo per la creazione di un Reader con query da associare
             /// </summary>
             /// <param name="command">Command con query associata</param>
-            /// <returns>Restituisce un reader per la lettura dati da DB</returns>
+            /// <returns>Restituisce un Reader per la lettura dati da DB</returns>
             public MySqlDataReader reader(MySqlCommand command, string query)
             {
                 MySqlDataReader read;
@@ -140,7 +140,7 @@ namespace DaamApiCollection
             /// Metodo per eseguire un inserimento nel DB
             /// </summary>
             /// <param name="command">Command con query si inserimento associata</param>
-            /// <returns>Ritorna il numero di righe interessato</returns>
+            /// <returns>Ritorna il numero di righe interessate dal CUD</returns>
             public int writer(MySqlCommand command)
             {
                 try

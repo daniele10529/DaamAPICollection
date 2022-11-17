@@ -67,7 +67,7 @@ namespace DaamApiCollection
                     if (parts[1].ToString().Length > nChars)
                     {
                         newPart = parts[1].ToString().Substring(0, nChars);
-                        //assegna il nuovo valore alla textbox
+                        //Assegna il nuovo valore alla textbox
                         newVal = parts[0].ToString() + symbolToTruncate + newPart;
                         return newVal;
                     }

@@ -22,7 +22,7 @@ namespace DaamApiCollection
             int Pages { get; }
 
             /// <summary>
-            /// Metodo per popolare un DataGridView
+            /// Metodo privato per popolare un DataGridView
             /// </summary>
             /// <param name="record">Record da Inserire in tabella</param>
             /// <param name="table">Tabella dove inserire l'oggetto</param>
