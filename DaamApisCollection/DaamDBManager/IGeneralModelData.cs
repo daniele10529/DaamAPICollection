@@ -1,6 +1,4 @@
-﻿using System;
-using System.Data;
-
+﻿using System.Data;
 
 namespace DaamApiCollection
 {
@@ -22,6 +20,13 @@ namespace DaamApiCollection
             int Pages { get; }
 
             /// <summary>
+            /// Metodo per settare le colonne del DataTable
+            /// e definire la chiave primaria
+            /// </summary>
+            /// <returns>Restituisce un DataTable settato per il binding al DataGridView</returns>
+            DataTable defineTable();
+            
+            /// <summary>
             /// Metodo privato per popolare un DataGridView
             /// </summary>
             /// <param name="record">Record da Inserire in tabella</param>
@@ -32,30 +37,34 @@ namespace DaamApiCollection
             /// Metodo per ottenere tutti i record di una tabella
             /// </summary>
             /// <param name="record">Record da cui ricavare la clausula di join</param>
+            /// <param name="table">Tabella da popolare con i dati del mapping</param>
             /// <returns>Ritorna un DataTable per il binding di un DataGridView</returns>
-            DataTable getAll(object record);
+            bool getAll(object record, DataTable table);
 
             /// <summary>
             /// Metodo per il mapping con tabulazione partendo da uno specifico index
             /// </summary>
             /// <param name="record">Record da cui ricavare la clausula di join</param>
+            /// <param name="table">Tabella da popolare con i dati del mapping</param>
             /// <param name="indexStart">Indice di partenza per la tabulazione, opzionale</param>
             /// <returns>Ritorna un DataTable per il binding di un DataGridView</returns>
-            DataTable selectData(object record, int indexStart = 0);
+            bool selectData(object record, DataTable table, int indexStart = 0);
 
             /// <summary>
             /// Metodo per la tabulazione scorrendo in avanti di pagina
             /// </summary>
             /// <param name="record">Record da cui ricavare la clausula di join</param>
+            /// <param name="table">Tabella da popolare con i dati del mapping</param>
             /// <returns>Ritorna un DataTable per il binding di un DataGridView</returns>
-            DataTable forward(object record);
+            bool forward(object record, DataTable table);
 
             /// <summary>
             /// Metodo per la tabulazione scorrendo in dietro di pagina
             /// </summary>
             /// <param name="record">Record da cui ricavare la clausula di join</param>
+            /// <param name="table">Tabella da popolare con i dati del mapping</param>
             /// <returns>Ritorna un DataTable per il binding di un DataGridView</returns>
-            DataTable back(object record);
+            bool back(object record, DataTable table);
 
             /// <summary>
             /// Metodo per l'inserimento di un record in tabella
