@@ -6,7 +6,9 @@ namespace DaamApiCollection
     namespace DaamDBManager
     {
         /// <summary>
-        /// Interfaccia di definizione del pattern per la gestione dati verso il DB
+        /// Interfaccia di definizione del pattern per la gestione dati verso il DB.
+        /// Rimane come promemoria per la costruzione delle classi da non implementare!!
+        /// L'implementazione crea troppi vincoli per l'utilizzo delle specifiche strutture di record
         /// </summary>
         public interface IGeneralModelData
         {
