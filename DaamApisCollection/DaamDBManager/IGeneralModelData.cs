@@ -41,6 +41,12 @@ namespace DaamApiCollection
             List<object> getAll(bool condition = false);
 
             /// <summary>
+            /// Metodo per ottenere tutti i record di una tabella, popola un proprio DataTable
+            /// </summary>
+            /// <returns>Ritorna una DataTable popolato</returns>
+            DataTable getAll();
+
+            /// <summary>
             /// Metodo per il mapping con tabulazione partendo da uno specifico index, popola il DataTable
             /// </summary>
             /// <param name="record">Record da cui ricavare la clausula di join</param>
