@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System.Collections.Generic;
+using System.Data;
 
 namespace DaamApiCollection
 {
@@ -31,6 +32,13 @@ namespace DaamApiCollection
             /// <param name="record">Record da cui ricavare la clausula di join</param>
             /// <returns>Ritorna true se il mapping è avvenuto correttamente</returns>
             bool getAll(object record);
+
+            /// <summary>
+            /// Metodo per ottenere tutti i record di una tabella attraverso una lista di tipo ADT
+            /// </summary>
+            /// <param name="condition">Condizione opzionale di creazione della lista</param>
+            /// <returns>Ritorna una lista di oggetti ADT</returns>
+            List<object> getAll(bool condition = false);
 
             /// <summary>
             /// Metodo per il mapping con tabulazione partendo da uno specifico index, popola il DataTable
