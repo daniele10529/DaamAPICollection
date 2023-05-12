@@ -10,7 +10,7 @@ namespace DaamApiCollection
         /// Rimane come promemoria per la costruzione delle classi da non implementare!!
         /// L'implementazione crea troppi vincoli per l'utilizzo delle specifiche strutture di record
         /// </summary>
-        public interface IGeneralModelData
+        public interface IGeneralModelData<T>
         {
             /// <summary>
             /// Getter definisce la pagina corrente per la paginazione
@@ -33,14 +33,14 @@ namespace DaamApiCollection
             /// </summary>
             /// <param name="record">Record da cui ricavare la clausula di join</param>
             /// <returns>Ritorna true se il mapping è avvenuto correttamente</returns>
-            bool getAll(object record);
+            bool getAll(T record);
 
             /// <summary>
             /// Metodo per ottenere tutti i record di una tabella attraverso una lista di tipo ADT
             /// </summary>
             /// <param name="condition">Condizione opzionale di creazione della lista</param>
             /// <returns>Ritorna una lista di oggetti ADT</returns>
-            List<object> getAll(bool condition = false);
+            List<T> getAll(bool condition = false);
 
             /// <summary>
             /// Metodo per ottenere tutti i record di una tabella, popola un proprio DataTable
@@ -52,29 +52,28 @@ namespace DaamApiCollection
             /// Metodo per il mapping con tabulazione partendo da uno specifico index, popola il DataTable
             /// </summary>
             /// <param name="record">Record da cui ricavare la clausula di join</param>
-            /// <param name="table">Tabella da popolare con i dati del mapping</param>
             /// <param name="indexStart">Indice di partenza per la tabulazione, opzionale</param>
             /// <returns>Ritorna true se il mapping è avvenuto correttamente</returns>
-            bool selectData(object record, DataTable table, int indexStart = 0);
+            bool selectData(T record, int indexStart = 0);
 
             /// <summary>
             /// Metodo per ricavare uno o più record in base ai criteri di ricerca, popola il DataTable
             /// </summary>
             /// <param name="record">Record da cercare nel DB</param>
             /// <returns>Ritorna true se il mapping è avvenuto correttamente</returns>
-            bool find(object record);
+            bool find(T record);
 
             /// <summary>
             /// Metodo per la tabulazione scorrendo in avanti di pagina
             /// </summary>
             /// <param name="record">Record da cui ricavare la clausula di join</param>
-            void forward(object record);
+            void forward(T record);
 
             /// <summary>
             /// Metodo per la tabulazione scorrendo in dietro di pagina
             /// </summary>
             /// <param name="record">Record da cui ricavare la clausula di join</param>
-            void back(object record);
+            void back(T record);
 
             /// <summary>
             /// Metodo per l'inserimento di un record in tabella
@@ -82,7 +81,7 @@ namespace DaamApiCollection
             /// <param name="record">Record da inserire in tabella</param>
             /// <param name="table">Nome della tabella dove inserire il record, opzionale</param>
             /// <returns>Ritorna True se l'inserimento è corretto</returns>
-            bool insert(object record, string table = "");
+            bool insert(T record, string table = "");
 
             /// <summary>
             /// Metodo per la modifica di un record della tabella
@@ -90,7 +89,7 @@ namespace DaamApiCollection
             /// <param name="record">Record con i dati aggiornati</param>
             /// <param name="table">Tabella in cui aggiornare il record, opzionale</param>
             /// <returns>Ritorna True se la modifica è corretta</returns>
-            bool update(object record, string table = "");
+            bool update(T record, string table = "");
 
             /// <summary>
             /// Metodo per l'eliminazione di un record dalla tabella
@@ -98,7 +97,7 @@ namespace DaamApiCollection
             /// <param name="reccord">Record da eliminare</param>
             /// <param name="table">Tabella in cui eliminare il record, opzionale</param>
             /// <returns>Ritorna True se l'eliminazione è corretta</returns>
-            bool delete(object reccord, string table = "");
+            bool delete(T reccord, string table = "");
 
         }
 
