@@ -79,6 +79,23 @@ namespace DaamApiCollection
             }
 
             /// <summary>
+            /// Metodo per l'estrazione paginata con il comando LIMIT
+            /// </summary>
+            /// <param name="startIndex">Indice di partenza per l'estrazione</param>
+            /// <param name="maxRows">Numero Max di righe da estrarre</param>
+            /// <returns>Ritorna oggetto DQL con query creata(parziale)</returns>
+            public DQL Limit(int startIndex, int maxRows)
+            {
+                if (!(query.Contains("WHERE")))
+                {
+                    query = "";
+                    throw new ArgumentException("Manca comando Where");
+                }
+                query += $"LIMIT {startIndex},{maxRows}";
+                return this;
+            }
+
+            /// <summary>
             /// Clausula di vincolo integrità referenziale
             /// </summary>
             /// <param name="field">Campo su cui verificare la clausula</param>
