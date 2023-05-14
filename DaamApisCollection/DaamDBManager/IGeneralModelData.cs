@@ -26,7 +26,7 @@ namespace DaamApiCollection
             /// Getter definisce la tabella da valorizzare nei
             /// metodi per il binding con il DataGridView
             /// </summary>
-            DataTable getTable { get; }
+            DataTable getTable();
 
             /// <summary>
             /// Metodo per ottenere tutti i record di una tabella, popola il DataTable
@@ -34,6 +34,14 @@ namespace DaamApiCollection
             /// <param name="record">Record da cui ricavare la clausula di join</param>
             /// <returns>Ritorna true se il mapping è avvenuto correttamente</returns>
             bool getAll(T record);
+
+            /// <summary>
+            /// Metodo per ottenere tutti i record di una tabella, popola il DataTable
+            /// </summary>
+            /// <param name="record">Record da cui ricavare la clausula di join</param>
+            /// <param name="param">Parametro aggiuntivo come clausula di join</param>
+            /// <returns>Ritorna true se il mapping è avvenuto correttamente</returns>
+            bool getAll(T record, string param);
 
             /// <summary>
             /// Metodo per ottenere tutti i record di una tabella attraverso una lista di tipo ADT
@@ -62,6 +70,14 @@ namespace DaamApiCollection
             /// <param name="record">Record da cercare nel DB</param>
             /// <returns>Ritorna true se il mapping è avvenuto correttamente</returns>
             bool find(T record);
+
+            /// <summary>
+            /// Metodo per ricavare uno o più record in base ai criteri di ricerca, popola il DataTable
+            /// </summary>
+            /// <param name="record">Record da cercare nel DB</param>
+            /// <param name="param">Parametro aggiuntivo di ricerca</param>
+            /// <returns>Ritorna true se il mapping è avvenuto correttamente</returns>
+            bool find(T record, string param);
 
             /// <summary>
             /// Metodo per la tabulazione scorrendo in avanti di pagina
