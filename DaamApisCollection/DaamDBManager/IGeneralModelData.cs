@@ -48,7 +48,7 @@ namespace DaamApiCollection
             /// </summary>
             /// <param name="condition">Condizione opzionale di creazione della lista</param>
             /// <returns>Ritorna una lista di oggetti ADT</returns>
-            List<T> getAll(bool condition = false);
+            List<T> getAll(bool condition);
 
             /// <summary>
             /// Metodo per ottenere tutti i record di una tabella, popola un proprio DataTable
@@ -95,25 +95,25 @@ namespace DaamApiCollection
             /// Metodo per l'inserimento di un record in tabella
             /// </summary>
             /// <param name="record">Record da inserire in tabella</param>
-            /// <param name="table">Nome della tabella dove inserire il record, opzionale</param>
+            /// <param name="param">Nome della tabella dove inserire il record, opzionale</param>
             /// <returns>Ritorna True se l'inserimento è corretto</returns>
-            bool insert(T record, string table = "");
+            bool insert(T record, string param = "");
 
             /// <summary>
             /// Metodo per la modifica di un record della tabella
             /// </summary>
             /// <param name="record">Record con i dati aggiornati</param>
-            /// <param name="table">Tabella in cui aggiornare il record, opzionale</param>
+            /// <param name="param">Tabella in cui aggiornare il record, opzionale</param>
             /// <returns>Ritorna True se la modifica è corretta</returns>
-            bool update(T record, string table = "");
+            bool update(T record, string param = "");
 
             /// <summary>
             /// Metodo per l'eliminazione di un record dalla tabella
             /// </summary>
             /// <param name="reccord">Record da eliminare</param>
-            /// <param name="table">Tabella in cui eliminare il record, opzionale</param>
+            /// <param name="param">Tabella in cui eliminare il record, opzionale</param>
             /// <returns>Ritorna True se l'eliminazione è corretta</returns>
-            bool delete(T reccord, string table = "");
+            bool delete(T reccord, string param = "");
 
         }
 
