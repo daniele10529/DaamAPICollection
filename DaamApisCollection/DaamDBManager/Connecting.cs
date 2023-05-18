@@ -95,6 +95,7 @@ namespace DaamApiCollection
             /// Metodo per la creazione di un Reader con query da associare
             /// </summary>
             /// <param name="command">Command con query associata</param>
+            /// <param name="query">Query da associare al command</param>
             /// <returns>Restituisce un Reader per la lettura dati da DB</returns>
             public MySqlDataReader getReader(MySqlCommand command, string query)
             {

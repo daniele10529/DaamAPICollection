@@ -10,7 +10,7 @@ namespace DaamApiCollection
         /// Da estendere nelle classi delle librerie di tipo Model, da costruire rispettando
         /// lo standard creato
         /// </summary>
-        public abstract class GeneralModelData<T>
+        public abstract class TemplateModelData<T>
         {
             /// <summary>
             /// Attributo privato per la restituzione del metodo getAll di tipo List(T) 
@@ -32,6 +32,11 @@ namespace DaamApiCollection
             /// metodi per il binding con il DataGridView
             /// </summary>
             public virtual DataTable GetTable { get; }
+
+            /// <summary>
+            /// Costruttore di default della classe TemplateModelData
+            /// </summary>
+            public TemplateModelData() { }
 
             /// <summary>
             /// Metodo per ottenere tutti i record di una tabella, popola il DataTable
