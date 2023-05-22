@@ -13,20 +13,18 @@ namespace DaamApiCollection
         {
 
             //Attributi privati
-            private string pathXMlErrorFile;
             private ReadingXML reader;
+            private string pathXMlErrorFile;
 
             /// <summary>
-            /// Setter per il percorso del file XML con la lista errori
+            /// Costruttore di default della classe Checking
             /// </summary>
-            public string PathXMlErrorFile { set => pathXMlErrorFile = value; }
-           
-
-            /// <summary>
-            /// Costruttore di default
-            /// </summary>
-            public Checking()
+            /// <param name="pathXMlErrorFile">Path del file XML con la lista errori</param>
+            public Checking(string pathXMlErrorFile)
             {
+                //Associa all'attributo privato il percorso passato al costruttore
+                this.pathXMlErrorFile = pathXMlErrorFile;
+                //Istanzia la classe ReadingXML con il percorso passato al costruttore
                 reader = new ReadingXML(pathXMlErrorFile);
             }
 
