@@ -36,16 +36,19 @@ namespace DaamApiCollection
             public bool isEmpty(string value)
             {
                 //Se la stringa è vuota ritorna true
-                if (value.Length == 0 || value.Length < 0) return true;
-                else
+                if (value.Length == 0 || value.Length < 0)
                 {
                     //Altrimenti se è stato specificato il file di errore
                     //ritorna l'errore specifico
-                    if(pathXMlErrorFile.Length > 0)
+                    if (pathXMlErrorFile.Length > 0)
                     {
                         throw new Exception(reader.readNodeFromPath("/ListError/Error1"));
                     }
                     //Se non è specificato un file di errore ritorna false
+                    return true;
+                }
+                else
+                {
                     return false;
                 }
 
