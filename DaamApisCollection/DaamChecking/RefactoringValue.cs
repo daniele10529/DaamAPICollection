@@ -7,7 +7,7 @@ namespace DaamApiCollection
         /// <summary>
         /// Classe per il refactoring di un valore
         /// </summary>
-        class RefactoringValue
+        public class RefactoringValue
         {
 
             /// <summary>
