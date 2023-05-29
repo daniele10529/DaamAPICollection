@@ -158,13 +158,22 @@ namespace DaamApiCollection
             /// <returns>Ritorna oggetto DML con cudOperation creata(parziale)</returns>
             public DML Where(string field)
             {
-                /*if (!(cudOperation.Contains("SET")) || !(cudOperation.Contains("DELETE FROM")))
+                if ((cudOperation.Contains("SET")))
                 {
+                    cudOperation += "WHERE " + field + " ";
+                    return this;
+                }
+                else if (cudOperation.Contains("DELETE FROM"))
+                {
+                    cudOperation += "WHERE " + field + " ";
+                    return this;
+                }
+                else
+                {   
                     cudOperation = "";
                     throw new ArgumentException("Manca comando FROM");
-                }*/
-                cudOperation += "WHERE " + field + " ";
-                return this;
+                }
+                
             }
 
             /// <summary>
