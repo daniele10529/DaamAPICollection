@@ -182,11 +182,23 @@ namespace DaamApiCollection
             /// <returns>Ritorna oggetto DQL con query creata(parziale)</returns>
             public DQL And(string field)
             {
-                if (!(query.Contains("WHERE")) || !(query.Contains("ON")))
+                if(query.Contains("INNER JOIN"))
                 {
-                    query = "";
-                    throw new ArgumentException("Manca comando WHERE oppure comando ON");
+                    if (!(query.Contains("ON")))
+                    {
+                        query = "";
+                        throw new ArgumentException("Manca comando ON");
+                    }
                 }
+                else
+                {
+                      if (!(query.Contains("WHERE")))
+                      {
+                          query = "";
+                          throw new ArgumentException("Manca comando WHERE");
+                     }
+                }
+                
                 query += "AND " + field + " ";
                 return this;
             }
