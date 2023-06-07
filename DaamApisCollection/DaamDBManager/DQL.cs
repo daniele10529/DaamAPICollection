@@ -171,7 +171,7 @@ namespace DaamApiCollection
                     query = "";
                     throw new ArgumentException("Manca comando WHERE");
                 }
-                query += "LIKE(%" + value + "%)";
+                query += $"LIKE('%{value}%') ";
                 return this;
             }
 

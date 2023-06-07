@@ -147,7 +147,7 @@ namespace DaamApiCollection
             public DML DeleteFrom(string table)
             {
                 cudOperation = "";
-                cudOperation += "DELETE FROM " + table;
+                cudOperation += "DELETE FROM " + table + " ";
                 return this;
             }
 
