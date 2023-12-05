@@ -154,7 +154,7 @@ namespace DaamApiCollection
                     //ritorna l'errore specifico
                     if (pathXMlErrorFile.Length > 0)
                     {
-                        throw new Exception(reader.readNodeFromPath("/ListError/Error13"));
+                        throw new Exception(reader.readNodeFromPath("/ListError/Error13") + $" => {rangeMin} : {rangeMax}");
                     }
                     //Se non è specificato un file di errore ritorna false
                     return false;
@@ -180,7 +180,7 @@ namespace DaamApiCollection
                     //ritorna l'errore specifico
                     if (pathXMlErrorFile.Length > 0)
                     {
-                        throw new Exception(reader.readNodeFromPath("/ListError/Error13"));
+                        throw new Exception(reader.readNodeFromPath("/ListError/Error13") + $" => {rangeMin} : {rangeMax}");
                     }
                     //Se non è specificato un file di errore ritorna false
                     return false;

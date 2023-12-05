@@ -84,7 +84,7 @@ namespace DaamApiCollection
                     //Iterazione di tutti i valori passati
                     foreach (string value in values)
                     {
-                        parameters += value + ",";
+                        parameters += "'"+value + "',";
                     }
                     //Rimuove l'ultima virgola
                     parameters = parameters.Remove(parameters.Length - 1);
@@ -110,7 +110,8 @@ namespace DaamApiCollection
             /// <summary>
             /// Metodo per definire i campi del comando Set con il valore assegnato al campo
             /// </summary>
-            /// <param name="fieldsEqualsValues">Campo con valore assegnato separato da lsimbolo '='</param>
+            /// <param name="fieldsEqualsValues">Campo con valore assegnato separato dal simbolo '='
+            /// e valore inserito tra apici</param>
             /// <returns>Ritorna oggetto DML con cudOperation creata(parziale)</returns>
             public DML Set(params string[] fieldsEqualsValues)
             {
