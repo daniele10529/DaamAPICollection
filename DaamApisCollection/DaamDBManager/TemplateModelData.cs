@@ -90,6 +90,13 @@ namespace DaamApiCollection
             public virtual bool find(T record, string param) { return false; }
 
             /// <summary>
+            /// Metodo per ricavare uno o più record da un vincolo di integrità referenziale
+            /// </summary>
+            /// <param name="indexForeignKey">Foreign Key per il vincolo di integrità</param>
+            /// <returns>Restituisce un oggetto di tipo T</returns>
+            public virtual T innerJoin(int indexForeignKey) { return default(T); }
+
+            /// <summary>
             /// Metodo per la tabulazione scorrendo in avanti di pagina
             /// </summary>
             /// <param name="record">Record da cui ricavare la clausula di join</param>
