@@ -86,10 +86,10 @@ namespace DaamApiCollection
             /// <returns>Ritorna oggetto DQL con query creata(parziale)</returns>
             public DQL Limit(int startIndex, int maxRows)
             {
-                if (!(query.Contains("WHERE")))
+                if (!(query.Contains("FROM")))
                 {
                     query = "";
-                    throw new ArgumentException("Manca comando Where");
+                    throw new ArgumentException("Manca comando FROM");
                 }
                 query += $"LIMIT {startIndex},{maxRows}";
                 return this;

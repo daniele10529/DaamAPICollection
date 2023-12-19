@@ -75,6 +75,13 @@ namespace DaamApiCollection
             public virtual bool selectData(T record, int indexStart = 0) { return false; }
 
             /// <summary>
+            /// Metodo per il mapping di tutti i record con tabulazione, popola il DataTable
+            /// </summary>
+            /// <param name="indexStart">Indice di partenza per la tabulazione, opzionale</param>
+            /// <returns>Ritorna true se il mapping è avvenuto correttamente</returns>
+            public virtual bool selectData(int indexStart = 0) { return false; }
+
+            /// <summary>
             /// Metodo per ricavare uno o più record in base ai criteri di ricerca, popola il DataTable
             /// </summary>
             /// <param name="record">Record da cercare nel DB</param>
@@ -107,6 +114,16 @@ namespace DaamApiCollection
             /// </summary>
             /// <param name="record">Record da cui ricavare la clausula di join</param>
             public virtual void back(T record) { }
+
+            /// <summary>
+            /// Metodo per la tabulazione scorrendo in avanti di pagina
+            /// </summary>
+            public virtual void forward() { }
+
+            /// <summary>
+            /// Metodo per la tabulazione scorrendo in dietro di pagina
+            /// </summary>
+            public virtual void back() { }
 
             /// <summary>
             /// Metodo per l'inserimento di un record in tabella
