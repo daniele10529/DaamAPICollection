@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Microsoft.VisualBasic;
 using MySql.Data.MySqlClient;
 
 namespace DaamApiCollection.DaamDBManager
@@ -42,14 +43,17 @@ namespace DaamApiCollection.DaamDBManager
 
 
         /// <summary>
-        /// Esegue il Dump dei dati nel DB
+        /// Esegue il Dump del DB
         /// </summary>
-        public void ExecuteDump()
+        /// <returns>Restituisce un messaggio in caso di Dump eseguito con successo</returns>
+        public string ExecuteDump()
         {
             //Inizializzazione dell'attributo con la directory di Dump
             string finalPath = "";
             //Inizializzazione dell'attributo di estensione per file già esistente
             string estensione = "";
+            //Messaggio di response
+            string response = "";
 
             try
             {
@@ -80,8 +84,8 @@ namespace DaamApiCollection.DaamDBManager
                 {
                     do
                     {   //Richiesta di scegliere un estensione che non esista già
-                        Console.Write("Scegli un estensione per la cartella : ");
-                        estensione = Console.ReadLine();
+                        estensione = Interaction.InputBox("Scegli un estensione per la cartella : ", "FILE DUMP GIà ESISTENTE");
+
                         //Se non esiste l'estensione scelta la crea
                         if (!(Directory.Exists(PathWhereExecuteDump + namefile + estensione)))
                         {
@@ -109,15 +113,14 @@ namespace DaamApiCollection.DaamDBManager
                 //Scarica le risorse
                 command.Dispose();
                 backup.Dispose();
-                Console.WriteLine("Dump eseguito con successo..!!");
-                //Attende un tasto premuto per chiudere
-                Console.ReadKey();
+                //Restituisce il messaggio di response
+                response = "Dump eseguito con successo!!";
+                return response;
 
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                Console.ReadKey();
+                throw new Exception(ex.Message);
             }
         }
     }
