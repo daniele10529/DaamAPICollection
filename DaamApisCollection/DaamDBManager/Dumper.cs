@@ -84,7 +84,7 @@ namespace DaamApiCollection.DaamDBManager
                 {
                     do
                     {   //Richiesta di scegliere un estensione che non esista già
-                        estensione = Interaction.InputBox("Scegli un estensione per la cartella : ", "FILE DUMP GIà ESISTENTE");
+                        estensione = Interaction.InputBox("Scegli un estensione per la cartella : ", "FILE DUMP ESISTENTE");
 
                         //Se non esiste l'estensione scelta la crea
                         if (!(Directory.Exists(PathWhereExecuteDump + namefile + estensione)))
