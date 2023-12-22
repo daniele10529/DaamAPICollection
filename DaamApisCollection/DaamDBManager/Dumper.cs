@@ -71,7 +71,7 @@ namespace DaamApiCollection.DaamDBManager
                 int mese = date.Month;
                 int anno = date.Year;
                 //Forma il nome del file in modalità stringa dal mese e anno odierni
-                string namefile = NameApp + mese.ToString() + anno.ToString();
+                string namefile = NameApp + "_" + mese.ToString()+ "_" + anno.ToString();
 
                 //Se la directory non esiste la crea
                 if (!(Directory.Exists(PathWhereExecuteDump + @"\" + namefile)))
