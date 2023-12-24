@@ -1,7 +1,8 @@
 ﻿using System;
 using System.IO;
-using Microsoft.VisualBasic;
 using MySql.Data.MySqlClient;
+using DaamInputBox;
+using System.Windows.Forms;
 
 namespace DaamApiCollection.DaamDBManager
 {
@@ -83,8 +84,14 @@ namespace DaamApiCollection.DaamDBManager
                 else //Se esiste già la directory
                 {
                     do
-                    {   //Richiesta di scegliere un estensione che non esista già
-                        estensione = Interaction.InputBox("Scegli un estensione per la cartella : ", "FILE DUMP ESISTENTE");
+                    { 
+                        //Visualizza e verifica l'InputBox per la richiesta di un'estenzione
+                        if(InputBox.ShowDialog("DUMP ESISTENTE", "Scegli un'estensione per il nome del file di Dump",
+                            InputBoxImage.Message) == DialogResult.OK)
+                        {
+                            //Ricava l'inserimento nell'InputBox
+                            estensione = InputBox.AnswerResult;
+                        }
 
                         //Se non esiste l'estensione scelta la crea
                         if (!(Directory.Exists(PathWhereExecuteDump + namefile + estensione)))
