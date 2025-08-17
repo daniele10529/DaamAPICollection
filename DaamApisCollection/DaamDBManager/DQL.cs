@@ -79,6 +79,56 @@ namespace DaamApiCollection
             }
 
             /// <summary>
+            /// Clausula di vincolo integrità referenziale con l'operatore NOT
+            /// </summary>
+            /// <param name="field">Campo su cui verificare la clausula</param>
+            /// <returns>Ritorna oggetto DQL con query creata(parziale)</returns>
+            public DQL WhereNOT(string field)
+            {
+                if (!(query.Contains("FROM")))
+                {
+                    query = "";
+                    throw new ArgumentException("Manca comando FROM");
+                }
+                query += "WHERE NOT " + field + " ";
+                return this;
+            }
+
+            /// <summary>
+            /// Clausula di vincolo integrità referenziale con l'operatore OR
+            /// </summary>
+            /// <param name="firstCondition">Prima condizione da soddisfare es. "stato := stato"</param>
+            /// <param name="secondCondition">Seconda condizione da soddisfare es "stato := canc"</param>
+            /// <returns>Ritorna oggetto DQL con query creata(parziale)</returns>
+            public DQL WhereOR(string firstCondition, string secondCondition)
+            {
+                if (!(query.Contains("FROM")))
+                {
+                    query = "";
+                    throw new ArgumentException("Manca comando FROM");
+                }
+                query += "WHERE (" + firstCondition + " OR " + secondCondition + ")";
+                return this;
+            }
+
+            /// <summary>
+            /// Clausula di vincolo integrità referenziale con gli operatori NOT e OR
+            /// </summary>
+            /// <param name="firstCondition">Prima condizione da soddisfare es. "stato := stato"</param>
+            /// <param name="secondCondition">Seconda condizione da soddisfare es "stato := canc"</param>
+            /// <returns>Ritorna oggetto DQL con query creata(parziale)</returns>
+            public DQL WhereNotOR(string firstCondition, string secondCondition)
+            {
+                if (!(query.Contains("FROM")))
+                {
+                    query = "";
+                    throw new ArgumentException("Manca comando FROM");
+                }
+                query += "WHERE NOT (" + firstCondition + " OR " + secondCondition + ")";
+                return this;
+            }
+
+            /// <summary>
             /// Metodo per l'estrazione paginata con il comando LIMIT
             /// </summary>
             /// <param name="startIndex">Indice di partenza per l'estrazione</param>
